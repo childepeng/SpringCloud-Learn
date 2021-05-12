@@ -1,0 +1,31 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /
+
+
+spring:
+  application:
+    name: Gw001
+
+  cloud:
+    gateway:
+      enabled: true
+      # 默认filter
+      default-filters:
+        # 添加网关标识
+        - AddResponseHeader=X-Request-Gateway, ${spring.application.name}
+
+      routes:
+        - id: es-test2
+          uri: http://192.168.1.16:9200
+          predicates:
+            - Path=/es/**
+            - Method=GET,POST
+          filters:
+            - SignatureValidate
+            - RewritePath=/es/, /
+            - ModifyRequest2=base64RewriteHandler, application/json
+            - TokenValidate
+            - ModifyResponse2=base64RewriteHandler, application/octet-stream
+

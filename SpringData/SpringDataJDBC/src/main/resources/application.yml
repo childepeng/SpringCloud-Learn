@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.30:3306/aicms_sa_20210112
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver

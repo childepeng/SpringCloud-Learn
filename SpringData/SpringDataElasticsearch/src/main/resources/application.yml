@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /
+  port: 8080
+  address: localhost
+
+spring:
+  elasticsearch:
+    rest:
+      uris: 192.168.1.16:9200
+
+

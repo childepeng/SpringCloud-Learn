@@ -1,0 +1,19 @@
+GET http://localhost:8080/programme/queryByName?name=Thor
+
+###
+
+POST http://localhost:8080/programme/search
+Content-Type: application/json
+
+{
+  "name": "thor",
+  "columnIds": [
+    531
+  ]
+}
+
+###
+
+POST http://localhost:8080/programme/timeCount
+
+###
