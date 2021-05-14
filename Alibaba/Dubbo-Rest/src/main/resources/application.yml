@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: dubbo-test
+
+# Dubbo
+dubbo:
+  application:
+    id: dubbo-test
+    name: dubbo-test
+    qos-enable: false
+  registry:
+    address: nacos://192.168.1.30:8848
+    check: false
+    protocol: dubbo
+  config-center:
+    address: nacos://192.168.1.30:8848
+  metadata-report:
+    address: nacos://192.168.1.30:8848
+
+  protocol:
+    name: rest
+    port: 8090
+    server: netty
+

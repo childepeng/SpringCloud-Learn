@@ -11,8 +11,9 @@
     <modules>
         <module>SpringData</module>
         <module>Gateway</module>
+        <module>Alibaba</module>
     </modules>
-
+    
     <build>
         <plugins>
             <plugin>

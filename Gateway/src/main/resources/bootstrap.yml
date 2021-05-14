@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: Gateway001
+
+  cloud:
+    nacos:
+      config:
+        extension-configs: yml
+        server-addr: 192.168.1.30:8848
+        namespace: namespace-dev
+

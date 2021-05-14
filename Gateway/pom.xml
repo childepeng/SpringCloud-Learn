@@ -11,6 +11,10 @@
 
     <artifactId>Gateway</artifactId>
 
+    <properties>
+        <alibaba-cloud-version>2.2.5.RELEASE</alibaba-cloud-version>
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -19,15 +23,17 @@
             <version>2.2.8.RELEASE</version>
         </dependency>
 
-        <!--<dependency>-->
-        <!--    <groupId>com.alibaba.cloud</groupId>-->
-        <!--    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            <version>${alibaba-cloud-version}</version>
+        </dependency>
 
-        <!--<dependency>-->
-        <!--    <groupId>com.alibaba.cloud</groupId>-->
-        <!--    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>${alibaba-cloud-version}</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

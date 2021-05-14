@@ -5,9 +5,10 @@ server:
 
 
 spring:
-  application:
-    name: Gw001
+  profiles:
+    active: dev
 
+  ## gateway配置
   cloud:
     gateway:
       enabled: true
@@ -19,13 +20,16 @@ spring:
       routes:
         - id: es-test2
           uri: http://192.168.1.16:9200
+          # predicate断言，判断哪些请求需要代理
           predicates:
             - Path=/es/**
             - Method=GET,POST
+          # filter过滤器
           filters:
             - SignatureValidate
             - RewritePath=/es/, /
             - ModifyRequest2=base64RewriteHandler, application/json
             - TokenValidate
             - ModifyResponse2=base64RewriteHandler, application/octet-stream
+
 
