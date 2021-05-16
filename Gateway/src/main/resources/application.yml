@@ -3,15 +3,29 @@ server:
   servlet:
     context-path: /
 
-
 spring:
+  application:
+    name: gateway01
+
+  main:
+    allow-bean-definition-overriding: true
+
   profiles:
     active: dev
 
-  ## gateway配置
   cloud:
+    # nacos discovery
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+
+    ## gateway配置
     gateway:
       enabled: true
+      discovery:
+        locator:
+          enabled: true
       # 默认filter
       default-filters:
         # 添加网关标识
@@ -19,7 +33,8 @@ spring:
 
       routes:
         - id: es-test2
-          uri: http://192.168.1.16:9200
+          # uri: http://192.168.1.16:9200
+          uri: lb://dubbo-test
           # predicate断言，判断哪些请求需要代理
           predicates:
             - Path=/es/**
@@ -31,5 +46,6 @@ spring:
             - ModifyRequest2=base64RewriteHandler, application/json
             - TokenValidate
             - ModifyResponse2=base64RewriteHandler, application/octet-stream
+
 
 

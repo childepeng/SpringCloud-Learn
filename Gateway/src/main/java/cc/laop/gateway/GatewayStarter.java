@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @SpringBootApplication
-public class Starter {
+public class GatewayStarter {
 
     public static void main(String[] args) {
-        SpringApplication.run(Starter.class, args);
+        SpringApplication.run(GatewayStarter.class, args);
     }
 
 }

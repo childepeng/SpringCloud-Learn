@@ -38,14 +38,14 @@ public class TokenValidateGatewayFilterFactory extends AbstractGatewayFilterFact
             String accountId = json.getString("account");
             // TODO: token验证
 
-            {
-                // token验证失败
-                BaseResp resp = new BaseResp(ResultCodEnum.TOKEN_CHECK_FAILED);
-                return response.writeWith(Mono.just(response.bufferFactory().wrap(JSON.toJSONString(resp).getBytes())));
+            //{
+            //    // token验证失败
+            //    BaseResp resp = new BaseResp(ResultCodEnum.TOKEN_CHECK_FAILED);
+            //    return response.writeWith(Mono.just(response.bufferFactory().wrap(JSON.toJSONString(resp).getBytes())));
+            //
+            //}
 
-            }
-
-            // return chain.filter(exchange);
+            return chain.filter(exchange);
         };
     }
 
