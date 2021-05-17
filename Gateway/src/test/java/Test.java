@@ -23,7 +23,7 @@ public class Test {
 
     public static void main(String[] args) throws IOException, InvalidKeyException, NoSuchAlgorithmException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("http://localhost:8081/es/programme/_search");
+        HttpPost httpPost = new HttpPost("http://localhost:8081/es/programme/search");
         httpPost.setEntity(new StringEntity("eyJxdWVyeSI6eyJtYXRjaCI6eyJuYW1lIjoidGhvciJ9fX0=",
                 ContentType.APPLICATION_OCTET_STREAM));
         addToken(httpPost);

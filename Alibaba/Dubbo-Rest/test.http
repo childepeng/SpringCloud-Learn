@@ -1,13 +1,8 @@
-POST http://localhost:8090/programme/search
+POST http://localhost:8090/programme/search?params=123
 Content-Type: application/json
 
 {
   "params": "123"
 }
-
-###
-
-GET http://localhost:8090/programme/search2/p1/p2
-
 
 ###

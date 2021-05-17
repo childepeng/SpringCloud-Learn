@@ -1,5 +1,6 @@
 package cc.laop.dubbo.rest;
 
+import cc.laop.dubbo.api.EsProgrammeService;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.ws.rs.Consumes;

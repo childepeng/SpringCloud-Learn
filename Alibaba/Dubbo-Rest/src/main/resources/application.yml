@@ -1,28 +1,41 @@
+server:
+  port: 8070
+  servlet:
+    context-path: /
+
 spring:
   profiles:
     active: dev
 
   application:
-    name: dubbo-test
+    name: dubbo-rest
 
-  main:
-    allow-bean-definition-overriding: true
-
+---
+spring:
   cloud:
     nacos:
-      config:
-        server-addr: localhost:8848
+      username: nacos
+      password: nacos
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 192.168.1.30:8848
 
 # Dubbo
 dubbo:
-  application:
-    id: dubbo-test
-    name: dubbo-test
-    qos-enable: false
+  protocols:
+    rest:
+      name: rest
+      port: 8090
+      server: netty
+    dubbo:
+      name: dubbo
+      port: -1
   registry:
-    address: nacos://localhost:8848
-  protocol:
-    name: rest
-    port: 8090
-    server: netty
+    address: nacos://192.168.1.30:8848
+  consumer:
+    timeout: 30000
+    check: false
+    retries: 0
+
 
