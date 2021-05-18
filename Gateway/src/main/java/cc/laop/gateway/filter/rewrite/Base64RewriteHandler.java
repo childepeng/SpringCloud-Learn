@@ -17,11 +17,17 @@ public class Base64RewriteHandler implements RewriteHandler {
 
     @Override
     public String encode(String content) {
+        if (content == null) {
+            return "";
+        }
         return new String(Base64Utils.encode(content.getBytes()), charset);
     }
 
     @Override
     public String decode(String content) {
+        if (content == null) {
+            return "";
+        }
         return new String(Base64Utils.decode(content.getBytes()), charset);
     }
 }

@@ -1,7 +1,7 @@
 package cc.laop.dubbo.rest;
 
+import cc.laop.dubbo.api.EsProgrammeService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.http.MediaType;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -13,9 +13,10 @@ import javax.ws.rs.Produces;
  * @Date: create in 2021/5/13 10:40
  * @Description:
  */
-@DubboService
+@DubboService(protocol = "rest")
 @Path("programme")
-@Produces({MediaType.APPLICATION_JSON_VALUE})
+@Produces({"application/json"})
+@Consumes({"application/json"})
 public class EsProgrammeServiceImpl implements EsProgrammeService {
 
     /**
@@ -27,8 +28,6 @@ public class EsProgrammeServiceImpl implements EsProgrammeService {
      */
     @POST
     @Path("search")
-    @Consumes({MediaType.APPLICATION_JSON_VALUE})
-    @Produces({MediaType.APPLICATION_JSON_VALUE})
     @Override
     public String search(String params) {
         return "hello: " + params;

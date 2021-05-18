@@ -11,78 +11,62 @@
 
     <artifactId>Dubbo-Rest</artifactId>
 
-    <properties>
-        <alibaba-cloud-version>2.2.5.RELEASE</alibaba-cloud-version>
-    </properties>
-
     <dependencies>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>2.4.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.4.5</version>
+            <version>${spring-boot-version}</version>
         </dependency>
-
-        <!--<dependency>-->
-        <!--    <groupId>com.alibaba.cloud</groupId>-->
-        <!--    <artifactId>spring-cloud-starter-dubbo</artifactId>-->
-        <!--    <version>${alibaba-cloud-version}</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-starter-web</artifactId>-->
-        <!--    <version>2.4.5</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--    <groupId>com.alibaba.cloud</groupId>-->
-        <!--    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-        <!--    <version>${alibaba-cloud-version}</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--    <groupId>com.alibaba.cloud</groupId>-->
-        <!--    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
-        <!--    <version>${alibaba-cloud-version}</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--    <groupId>com.alibaba.cloud</groupId>-->
-        <!--    <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>-->
-        <!--    <version>${alibaba-cloud-version}</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--    <groupId>org.apache.dubbo</groupId>-->
-        <!--    <artifactId>dubbo</artifactId>-->
-        <!--    <version>2.7.8</version>-->
-        <!--</dependency>-->
 
         <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>2.7.8</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <exclusions>
+                <!-- 过滤掉jsr311,防止与rs-api冲突,导致缺少method -->
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- REST support dependencies -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-rpc-rest</artifactId>
-            <version>2.7.8</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-            <version>1.4.2</version>
+            <version>${dubbo-version}</version>
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 
 </project>
