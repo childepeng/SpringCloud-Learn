@@ -1,7 +1,7 @@
 package cc.laop.gateway.filter.check;
 
 import cc.laop.gateway.dto.BaseResp;
-import cc.laop.gateway.dto.ResultCode;
+import cc.laop.gateway.dto.ResultCodeEnum;
 import cc.laop.gateway.util.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -48,7 +48,7 @@ public class SignatureValidateGatewayFilterFactory extends AbstractGatewayFilter
 
             if (StringUtils.isAnyEmpty(token, timeStr, clientId) || !org.apache.commons.lang3.StringUtils.isNumeric(timeStr)) {
                 // 参数异常
-                BaseResp resp = new BaseResp(ResultCode.ILLEGAL_ARGUMENTS);
+                BaseResp resp = new BaseResp(ResultCodeEnum.ILLEGAL_ARGUMENT);
                 return response.writeWith(Mono.just(response.bufferFactory().wrap(resp.toString().getBytes())));
             }
 
@@ -56,7 +56,7 @@ public class SignatureValidateGatewayFilterFactory extends AbstractGatewayFilter
             long diff = System.currentTimeMillis() / 1000 - clientTime;
             if (diff > 30 || diff < -30) {
                 // 签名过期
-                BaseResp resp = new BaseResp(ResultCode.SIGN_EXPIRED);
+                BaseResp resp = new BaseResp(ResultCodeEnum.TOKEN_EXPIRED);
                 return response.writeWith(Mono.just(response.bufferFactory().wrap(resp.toString().getBytes())));
             }
 
@@ -71,7 +71,7 @@ public class SignatureValidateGatewayFilterFactory extends AbstractGatewayFilter
                 String newToken = Base64Utils.encodeToString(signData);
                 if (!token.equals(newToken)) {
                     // 签名验证失败
-                    BaseResp resp = new BaseResp(ResultCode.SIGN_CHECK_FAILED);
+                    BaseResp resp = new BaseResp(ResultCodeEnum.TOKEN_CHECK_FAILED);
                     return response.writeWith(Mono.just(response.bufferFactory().wrap(resp.toString().getBytes())));
                 }
             } catch (NoSuchAlgorithmException | InvalidKeyException e) {

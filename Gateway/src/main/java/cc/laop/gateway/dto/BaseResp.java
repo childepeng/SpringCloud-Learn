@@ -14,7 +14,7 @@ public class BaseResp {
     public BaseResp() {
     }
 
-    public BaseResp(ResultCodEnum rtc) {
+    public BaseResp(ResultCodeEnum rtc) {
         this.result = rtc.getCode();
         this.message = rtc.getMessage();
     }

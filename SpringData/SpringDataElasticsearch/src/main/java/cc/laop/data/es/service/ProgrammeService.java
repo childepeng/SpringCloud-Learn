@@ -64,9 +64,9 @@ public class ProgrammeService {
         if (queryDO.getId() != null) {
             criteria.and(new Criteria("id").is(queryDO.getId()));
         }
-        if (StringUtils.hasLength(queryDO.getName())) {
-            criteria.and(new Criteria("name").matches(queryDO.getName()));
-        }
+        // if (StringUtils.hasLength(queryDO.getName())) {
+        //     criteria.and(new Criteria("name").matches(queryDO.getName()));
+        // }
         if (StringUtils.hasLength(queryDO.getImdbid())) {
             criteria.and(new Criteria("imdbid").is(queryDO.getImdbid()));
         }

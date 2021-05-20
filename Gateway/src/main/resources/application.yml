@@ -22,21 +22,16 @@ spring:
       discovery:
         server-addr: 192.168.1.30:8848
 
----
-spring:
-  cloud:
     sentinel:
       eager: true
       enabled: true
       transport:
         dashboard: 192.168.1.30:8080
 
----
-spring:
-  cloud:
-    sentinel:
-      enabled: true
-
+# JWT配置
+jwt:
+  ttl: 120
+  secret: 12345678
 
 ---
 spring:

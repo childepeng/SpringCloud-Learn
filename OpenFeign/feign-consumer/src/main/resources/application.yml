@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: feign-demo-consumer
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.30:8848
+
+# 服务feign-provider的负载均衡配置
+feign-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule
