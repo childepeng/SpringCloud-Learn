@@ -1,6 +1,6 @@
 package cc.laop.security.mapper;
 
-import cc.laop.security.entity.Role;
+import cc.laop.security.model.entity.Role;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

@@ -1,6 +1,6 @@
 package cc.laop.security.mapper;
 
-import cc.laop.security.entity.User;
+import cc.laop.security.model.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 /**
