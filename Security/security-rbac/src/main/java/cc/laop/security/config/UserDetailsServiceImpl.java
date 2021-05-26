@@ -3,11 +3,11 @@ package cc.laop.security.config;
 import cc.laop.security.mapper.ResourceRepository;
 import cc.laop.security.mapper.RoleRepository;
 import cc.laop.security.mapper.UserRepository;
-import cc.laop.security.model.SecurityAuthority;
-import cc.laop.security.model.SecurityUser;
 import cc.laop.security.model.entity.Resource;
 import cc.laop.security.model.entity.User;
+import cc.laop.security.util.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -40,8 +40,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         List<Resource> reslist = resourceRepository.findByUserid(user.getId());
         // return user.setResourceList(reslist);
-        Set<SecurityAuthority> authoritys =
-                reslist.stream().map(it -> new SecurityAuthority(it.getPerms())).collect(Collectors.toSet());
-        return new SecurityUser(user, authoritys);
+
+        Set<SimpleGrantedAuthority> authoritys =
+                reslist.stream().map(it -> new SimpleGrantedAuthority(it.getPerms())).collect(Collectors.toSet());
+
+        org.springframework.security.core.userdetails.User securityUser =
+                new org.springframework.security.core.userdetails.User(
+                        user.getUsername(),
+                        user.getPassword(),
+                        BooleanUtils.isTure(user.getEnable()),
+                        true,
+                        true,
+                        !BooleanUtils.isTure(user.getLocked()),
+                        authoritys);
+
+        return securityUser;
     }
 }

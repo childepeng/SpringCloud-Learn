@@ -5,13 +5,17 @@ import cc.laop.security.config.handler.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.session.security.web.authentication.SpringSessionRememberMeServices;
 
 /**
  * @Auther: peng
@@ -69,7 +73,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
                         .logoutUrl("/logout").permitAll()
                         .logoutSuccessHandler(new LogoutSuccessHandlerImpl()))
-                .rememberMe().disable()
+                // .rememberMe().disable()
+                .rememberMe(httpSecurityRememberMeConfigurer ->
+                        httpSecurityRememberMeConfigurer.rememberMeServices(rememberMeServices()))
                 // 异常处理
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer
                         .accessDeniedHandler(new AccessDeniedHandlerImpl())
@@ -91,4 +97,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationSuccessHandler(new LoginSuccessHandler());
         return filter;
     }
+
+
+    @Bean
+    public RememberMeServices rememberMeServices() {
+        SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
+        rememberMeServices.setValiditySeconds(120);
+        return rememberMeServices;
+    }
+
+
+    /**
+     * Spring Session Redis 默认序列化方式
+     *
+     * @return
+     */
+    @Bean("springSessionDefaultRedisSerializer")
+    public RedisSerializer redisSerializer() {
+        return new GenericJackson2JsonRedisSerializer();
+    }
+
 }

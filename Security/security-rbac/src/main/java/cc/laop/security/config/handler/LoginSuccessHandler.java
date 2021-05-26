@@ -1,9 +1,9 @@
 package cc.laop.security.config.handler;
 
-import cc.laop.security.model.SecurityUser;
 import cc.laop.security.model.vo.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        SecurityUser user = (SecurityUser) authentication.getPrincipal();
+        User user = (User) authentication.getPrincipal();
         Result result = new Result();
         result.setData(user.getUsername());
         result.setMessage("登录成功");

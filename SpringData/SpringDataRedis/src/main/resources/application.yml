@@ -1,0 +1,14 @@
+spring:
+  redis:
+    host: 192.168.1.30
+    port: 6379
+    password: yoostar403
+
+#    cluster:
+#      nodes: 192.168.1.30:6378, 192.168.1.30:6377
+#      max-redirects: 5
+
+#    sentinel:
+#      master: 192.168.1.30:6371
+#      nodes: 192.168.1.30:6371, 192.168.1.30:6372
+#      password: yoostar403
