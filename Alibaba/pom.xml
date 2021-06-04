@@ -15,6 +15,7 @@
         <module>Dubbo-Rest</module>
         <module>dubbo-sentinel</module>
         <module>alibaba-rocketmq</module>
+        <module>alibaba-stream-rocketmq</module>
     </modules>
 
 

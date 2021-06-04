@@ -1,14 +1,6 @@
-spring:
-  cloud:
-    stream:
-      rocketmq:
-        binder:
-          name-server: 192.168.1.30:9876
-
----
-spring:
-  cloud:
-    stream:
-      rocketmq:
-        binder:
-          name-server:
+rocketmq:
+  name-server: 192.168.1.30:9876
+  producer:
+    group: p-group-1
+  consumer:
+    group: c-group-1

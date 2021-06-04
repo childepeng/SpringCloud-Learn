@@ -1,6 +1,7 @@
 package cc.laop.mq.config;
 
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,8 +13,9 @@ import org.springframework.context.annotation.Configuration;
 public class RocketMQConfig {
 
 
-    public RocketMQTemplate rocketMQTemplate() {
-        
+    @Bean
+    public RocketMQTemplate rocketMQTemplate(RocketMQTemplate rocketMQTemplate) {
+        return rocketMQTemplate;
     }
 
 }
