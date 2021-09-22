@@ -1,9 +1,7 @@
 package cc.laop.data.es.controller;
 
-import cc.laop.data.es.dataobject.ProgrammeQueryDTO;
 import cc.laop.data.es.service.ProgrammeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,15 +25,15 @@ public class ProgrammeController {
     }
 
 
-    @RequestMapping("search")
-    public List query(@RequestBody ProgrammeQueryDTO dto) {
-        return programmeService.compoundQuery(dto);
-    }
-
-    @RequestMapping("timeCount")
-    public List createTimeCount() {
-        return programmeService.createtimeHistogram();
-    }
+    // @RequestMapping("search")
+    // public List query(@RequestBody ProgrammeQueryDTO dto) {
+    //     return programmeService.compoundQuery(dto);
+    // }
+    //
+    // @RequestMapping("timeCount")
+    // public List createTimeCount() {
+    //     return programmeService.createtimeHistogram();
+    // }
 
 
 }

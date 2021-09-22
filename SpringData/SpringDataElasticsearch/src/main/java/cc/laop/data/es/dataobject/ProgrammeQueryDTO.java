@@ -7,88 +7,69 @@ package cc.laop.data.es.dataobject;
  */
 public class ProgrammeQueryDTO {
 
-    private Integer id;
+    private String keyword;
 
-    private String name;
+    private Integer serviceTypeId;
 
-    private String imdbid;
+    private Boolean adult;
 
-    private Integer type;
+    private Boolean lock;
 
-    private Integer progType;
-
-    private String[] imdbScoeRange;
-
-    private Integer serviceTypeid;
+    private Integer[] programmeIds;
 
     private Integer[] tagIds;
 
     private Integer[] columnIds;
 
-    private Integer pageNum;
+    private String orderField;
+
+    private Integer[] types;
+
     private Integer pageSize;
-    private String order;
+    private Integer pageNum;
 
-    public Integer getId() {
-        return id;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public ProgrammeQueryDTO setId(Integer id) {
-        this.id = id;
+    public ProgrammeQueryDTO setKeyword(String keyword) {
+        this.keyword = keyword;
         return this;
     }
 
-    public String getName() {
-        return name;
+    public Integer getServiceTypeId() {
+        return serviceTypeId;
     }
 
-    public ProgrammeQueryDTO setName(String name) {
-        this.name = name;
+    public ProgrammeQueryDTO setServiceTypeId(Integer serviceTypeId) {
+        this.serviceTypeId = serviceTypeId;
         return this;
     }
 
-    public String getImdbid() {
-        return imdbid;
+    public Boolean getAdult() {
+        return adult;
     }
 
-    public ProgrammeQueryDTO setImdbid(String imdbid) {
-        this.imdbid = imdbid;
+    public ProgrammeQueryDTO setAdult(Boolean adult) {
+        this.adult = adult;
         return this;
     }
 
-    public Integer getType() {
-        return type;
+    public Boolean getLock() {
+        return lock;
     }
 
-    public ProgrammeQueryDTO setType(Integer type) {
-        this.type = type;
+    public ProgrammeQueryDTO setLock(Boolean lock) {
+        this.lock = lock;
         return this;
     }
 
-    public Integer getProgType() {
-        return progType;
+    public Integer[] getProgrammeIds() {
+        return programmeIds;
     }
 
-    public ProgrammeQueryDTO setProgType(Integer progType) {
-        this.progType = progType;
-        return this;
-    }
-
-    public String[] getImdbScoeRange() {
-        return imdbScoeRange;
-    }
-
-    public ProgrammeQueryDTO setImdbScoeRange(String[] imdbScoeRange) {
-        this.imdbScoeRange = imdbScoeRange;
-        return this;
-    }
-
-    public Integer getServiceTypeid() {
-        return serviceTypeid;
-    }
-
-    public ProgrammeQueryDTO setServiceTypeid(Integer serviceTypeid) {
-        this.serviceTypeid = serviceTypeid;
+    public ProgrammeQueryDTO setProgrammeIds(Integer[] programmeIds) {
+        this.programmeIds = programmeIds;
         return this;
     }
 
@@ -110,12 +91,21 @@ public class ProgrammeQueryDTO {
         return this;
     }
 
-    public Integer getPageNum() {
-        return pageNum;
+    public String getOrderField() {
+        return orderField;
     }
 
-    public ProgrammeQueryDTO setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
+    public ProgrammeQueryDTO setOrderField(String orderField) {
+        this.orderField = orderField;
+        return this;
+    }
+
+    public Integer[] getTypes() {
+        return types;
+    }
+
+    public ProgrammeQueryDTO setTypes(Integer[] types) {
+        this.types = types;
         return this;
     }
 
@@ -128,12 +118,12 @@ public class ProgrammeQueryDTO {
         return this;
     }
 
-    public String getOrder() {
-        return order;
+    public Integer getPageNum() {
+        return pageNum;
     }
 
-    public ProgrammeQueryDTO setOrder(String order) {
-        this.order = order;
+    public ProgrammeQueryDTO setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
         return this;
     }
 }

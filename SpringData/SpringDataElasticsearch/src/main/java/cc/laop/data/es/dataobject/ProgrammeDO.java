@@ -1,7 +1,6 @@
 package cc.laop.data.es.dataobject;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -23,6 +22,9 @@ public class ProgrammeDO {
     private String name;
 
     @Field(type = FieldType.Keyword)
+    private String acronym;
+
+    @Field(type = FieldType.Keyword)
     private String fullName;
 
     @Field(type = FieldType.Integer)
@@ -37,23 +39,35 @@ public class ProgrammeDO {
     @Field(type = FieldType.Text)
     private String imdbScore;
 
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss")
+    @Field(type = FieldType.Date)
     private Date createTime;
 
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String releaseTime;
 
     @Field(type = FieldType.Integer)
     private Integer[] castIds;
 
+    @Field(type = FieldType.Auto)
+    private String[] casts;
+
     @Field(type = FieldType.Integer)
     private Integer[] tagIds;
+
+    @Field(type = FieldType.Auto)
+    private String[] tags;
 
     @Field(type = FieldType.Integer)
     private Integer[] columnIds;
 
+    @Field(type = FieldType.Auto)
+    private String[] columns;
+
     @Field(type = FieldType.Integer)
     private Integer[] serviceTypeIds;
+
+    @Field(type = FieldType.Integer)
+    private Integer status;
 
     public int getId() {
         return id;
@@ -70,6 +84,15 @@ public class ProgrammeDO {
 
     public ProgrammeDO setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getAcronym() {
+        return acronym;
+    }
+
+    public ProgrammeDO setAcronym(String acronym) {
+        this.acronym = acronym;
         return this;
     }
 
@@ -145,12 +168,30 @@ public class ProgrammeDO {
         return this;
     }
 
+    public String[] getCasts() {
+        return casts;
+    }
+
+    public ProgrammeDO setCasts(String[] casts) {
+        this.casts = casts;
+        return this;
+    }
+
     public Integer[] getTagIds() {
         return tagIds;
     }
 
     public ProgrammeDO setTagIds(Integer[] tagIds) {
         this.tagIds = tagIds;
+        return this;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public ProgrammeDO setTags(String[] tags) {
+        this.tags = tags;
         return this;
     }
 
@@ -163,12 +204,30 @@ public class ProgrammeDO {
         return this;
     }
 
+    public String[] getColumns() {
+        return columns;
+    }
+
+    public ProgrammeDO setColumns(String[] columns) {
+        this.columns = columns;
+        return this;
+    }
+
     public Integer[] getServiceTypeIds() {
         return serviceTypeIds;
     }
 
     public ProgrammeDO setServiceTypeIds(Integer[] serviceTypeIds) {
         this.serviceTypeIds = serviceTypeIds;
+        return this;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public ProgrammeDO setStatus(Integer status) {
+        this.status = status;
         return this;
     }
 }

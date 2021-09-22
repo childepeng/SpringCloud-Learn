@@ -27,7 +27,7 @@ public class RedisLockTest {
 
     @Test
     public void test() throws InterruptedException {
-        ExecutorService pool = Executors.newFixedThreadPool(2);
+        ExecutorService pool = Executors.newFixedThreadPool(100);
         CountDownLatch cdl = new CountDownLatch(threadNum);
         for (int i = 0; i < threadNum; i++) {
             pool.execute(() -> {
